@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using UsuariosApi.Data.Dtos;
 using UsuariosApi.Models;
 
 namespace UsuariosApi.Controllers
@@ -8,14 +9,10 @@ namespace UsuariosApi.Controllers
     public class UsuarioController : ControllerBase
     {
         [HttpPost]
-        public IActionResult Post([FromBody] Usuario usuario)
+        public IActionResult CadastraUsuario([FromBody] CreateUsuarioDto usuarioDto)
         {
-            if (usuario == null)
-            {
-                return BadRequest();
-            }
-
-            return Ok();
+            throw new System.NotImplementedException();
         }
+        
     }
 }
