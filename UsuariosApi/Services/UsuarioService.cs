@@ -31,8 +31,8 @@ namespace UsuariosApi.Services
                 throw new Exception("Não foi possível cadastrar o usuário");
             }
         }
-        
-        public async Task Login(LoginUsuarioDto usuarioDto)
+
+        public async Task<string> Login(LoginUsuarioDto usuarioDto)
         {
             var result = await _signInManager.PasswordSignInAsync(usuarioDto.UserName, usuarioDto.Password, false, false);
 
@@ -40,8 +40,11 @@ namespace UsuariosApi.Services
             {
                 throw new ApplicationException("Não foi possível logar");
             }
+            var usuario = _signInManager.UserManager.Users.FirstOrDefault(user => user.NormalizedUserName == usuarioDto.UserName.ToUpper());
 
-            _tokenService.GenerateToken(usuario);
+            var token = _tokenService.GenerateToken(usuario);
+
+            return token;
         }
     }
 }
