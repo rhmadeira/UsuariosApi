@@ -12,9 +12,11 @@ public class TokenService
     {
         Claim[] claims = new Claim[]
         {
-            new Claim(ClaimTypes.Name, usuario.UserName),
-            new Claim(ClaimTypes.NameIdentifier, usuario.Id.ToString()),
-            new Claim(ClaimTypes.DateOfBirth, usuario.DataNascimento.ToString())
+            new Claim("UserName", usuario.UserName),
+            new Claim("Id", usuario.Id.ToString()),
+            new Claim("DataNascimento", usuario.DataNascimento.ToString()),
+            //new Claim(ClaimTypes.DateOfBirth, usuario.DataNascimento.ToString())
+            new Claim("LoginTimeStamp", DateTime.UtcNow.ToString())
         };
 
         var chave = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("aosihf293h8f98dfj"));
